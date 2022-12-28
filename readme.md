@@ -9,7 +9,7 @@ vmbcarabbacan
 
 #links
 https://databasefaqs.com/mongodb-join-two-collections
-digitaloc
+https://mongoosejs.com/docs/validation.html
 
 #samples
 one to many with condition

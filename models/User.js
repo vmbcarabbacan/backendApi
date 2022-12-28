@@ -4,7 +4,8 @@ const bcrypt = require('bcrypt')
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        lowercase: true,
+        required: true,
     },
     username: {
         type: String,
@@ -13,6 +14,7 @@ const userSchema = new mongoose.Schema({
     email: {
         type: String,
         unique: true,
+        lowercase: true,
         required: true
     },
     password: {
@@ -26,7 +28,15 @@ const userSchema = new mongoose.Schema({
     active: {
         type: Boolean,
         default: true
+    },
+    UserInformation: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'UserInformation'
     }
+},
+{
+    timestamps: true
 })
 
 userSchema.methods.isValidPassword = async (password) => {
