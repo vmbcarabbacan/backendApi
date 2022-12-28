@@ -1,0 +1,12 @@
+20221228	00:24:59	9e463e4c-1d81-40e6-aa38-f0facd1fe337	SyntaxError: Unexpected token } in JSON at position 58	POST	/auth/register	undefined20221228	00:25:10	7467b1f6-5b51-4a32-b3d8-adf390c6a105	TypeError: arr.some is not a function	POST	/auth/register	undefined20221228	00:25:45	f7a7ad11-98da-481d-9b40-d1da1b907fef	TypeError: arr.some is not a function	POST	/auth/register	undefined20221228	00:27:39	63013cf6-945e-4627-a1b1-65c25ca051b2	TypeError: arr.some is not a function	POST	/auth/register	undefined
+20221228	00:28:04	77924b1e-3d3c-4828-bf3b-d399e39832ad	TypeError: arr.some is not a function	POST	/auth/register	undefined
+20221228	05:49:58	e0c175f6-2ffd-4cd1-933b-7e051d745e02	TypeError: User.select is not a function	GET	/users	undefined
+20221228	06:06:28	c6f47903-0c05-46d7-9700-83c065f06c9b	TypeError: User.aggregate(...).pretty is not a function	GET	/users	undefined
+20221228	06:13:13	52949eaf-87b8-4914-95de-d4bf69f0e0d0	TypeError: sendSatus is not a function	GET	/users	undefined
+20221228	06:13:58	5672b276-4d24-4182-b14d-4b442dec370c	TypeError: sendSatus is not a function	GET	/users	undefined
+20221228	06:17:41	c5cb0dd7-ba42-49cd-8485-a86bae2aa10f	MongoServerError: unknown operator: $usermetas.meta	GET	/users	undefined
+20221228	06:17:53	cb96fd3c-c54f-4e0c-80b1-827f8f2b6d69	MongoServerError: unknown operator: $metas.meta	GET	/users	undefined
+20221228	06:24:57	40c7de5d-b8ed-44a8-a0e6-1cdbced29c02	MongoServerError: unknown top level operator: $metas.meta. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.	GET	/users	undefined
+20221228	06:25:20	2c33033f-5818-4d99-8189-f46a7a8c114c	MongoServerError: unknown top level operator: $getField.meta. If you have a field name that starts with a '$' symbol, consider using $getField or $setField.	GET	/users	undefined
+20221228	06:28:12	c63be52d-373d-48e9-b41a-78595f294f6b	MongoServerError: $lookup with a 'let' argument must also specify 'pipeline'	GET	/users	undefined
+20221228	06:38:01	be7c5690-e1e1-42ca-977b-9a05c97099eb	MongoServerError: $lookup with a 'let' argument must also specify 'pipeline'	GET	/users	undefined
