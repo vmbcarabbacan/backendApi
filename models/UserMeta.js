@@ -30,4 +30,4 @@ userMetaSchema.plugin(AutoIncrement, {
     start_seq: 100
 })
 
-module.exports = mongoose.model('userMeta', userMetaSchema)
+module.exports = mongoose.model('UserMeta', userMetaSchema)

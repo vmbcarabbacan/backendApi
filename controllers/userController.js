@@ -11,21 +11,28 @@ const getUsers = async (req, res) => {
     {
       $lookup: {
         from: "usermetas",
-        localField: "_id",
-        foreignField: "user",
-        as: "metas",
+        let: { id: "$_id" },
+        pipeline: [
+          { $match: 
+            { $expr: 
+              { $and:
+                 [
+                  { $eq: ["$meta", "firstName"] },
+                  { $eq: ["$user", "$$id"] }
+                ]
+              }
+            }
+          },
+          {
+            $project: {
+              value: 1
+            }
+          }
+        ],
+        as: "firstName",
       },
     },
-    {
-        $replaceRoot: { newRoot: {
-            $mergeObjects: [ { $arrayElemAt: [
-                "$metas", 0
-            ] }, "$$ROOT" ]
-        } }
-    },
-    {
-        $project: { metas: 0 }
-    }
+    
   ])
   if (!users?.length) return sendStatus(res, 400, 'No user found')
 
