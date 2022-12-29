@@ -1,0 +1,2 @@
+20221229	06:55:24	61e0213f-8547-4681-bd7c-ad8ee4a272f9	TypeError: User.select is not a function	GET	/users	undefined
+20221229	06:56:17	72838679-cd78-4234-abcf-b901f85cbdf6	Error: Invalid select: select only takes 1 argument	GET	/users	undefined

@@ -1,5 +1,5 @@
 const User = require('../models/User')
-const UserMeta = require('../models/UserMeta')
+const UserInformation = require('../models/UserInformation')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { containUndefined, containNull, containEmpty, sendStatus } = require('../services/global')
@@ -57,95 +57,75 @@ const login = async (req, res) => {
  * @access Public
  */
 const register = async (req, res) => {
-    const { firstName, familyName, username, email, password } = req.body
+    try {
+        const { firstName, familyName, username, email, password } = req.body
 
-    // check if body contains undefined, null or empty
-    if(containUndefined(Object.values(req.body)) || containNull(Object.values(req.body)) || containEmpty(Object.values(req.body))) return sendStatus(res, 400, 'All fields are required')
+        // check if body contains undefined, null or empty
+        if(containUndefined(Object.values(req.body)) || containNull(Object.values(req.body)) || containEmpty(Object.values(req.body))) return sendStatus(res, 400, 'All fields are required')
 
-    // Check for duplicates
-    const duplicateUsername = await User.findOne({ username }).lean().exec()
-    if(duplicateUsername) return sendStatus(res, 409, 'Duplicate username')
+        // Check for duplicates
+        const duplicateUsername = await User.findOne({ username }).lean().exec()
+        if(duplicateUsername) return sendStatus(res, 409, 'Duplicate username')
 
-    const duplicateEmail = await User.findOne({ email }).lean().exec()
-    if(duplicateEmail) return sendStatus(res, 409, 'Duplicate email')
+        const duplicateEmail = await User.findOne({ email }).lean().exec()
+        if(duplicateEmail) return sendStatus(res, 409, 'Duplicate email')
 
-    // Hash password
-    const hashPassword = await bcrypt.hash(password, 10)
-    delete req.body.password
-    
-    const fullName = `${firstName} ${familyName}`
+        // Hash password
+        const hashPassword = await bcrypt.hash(password, 10)
+        delete req.body.password
+        
+        const fullName = `${firstName} ${familyName}`
+        const userObject = {
+            ...req.body,
+            name: fullName,
+            password: hashPassword,
+        }
 
-    const userObject = {
-        ...req.body,
-        name: fullName,
-        password: hashPassword
+        // create and store new user
+        const user = await User.create(userObject)
+
+        //create and store other information
+        const userObj = {
+            firstName: req.body.firstName,
+            familyName: req.body.familyName
+        }
+        const information = await UserInformation.create(userObj)
+
+        user.UserInformation = information
+        await user.save()
+
+
+        if(!user) return sendStatus(res, 500, 'Server Error') 
+        
+        const accessToken = jwt.sign(
+            {
+            "UserInfo": {
+                "username": user.username,
+                "role": user.role
+            }
+        }, ACCESS_TOKEN_SECRET,
+        { expiresIn: '30m' }
+        )
+
+        const refreshToken = jwt.sign(
+            { "username": user.username },
+            REFRESH_TOKEN_SECRET,
+            {expiresIn: '7d'}
+        )
+
+        // Create secure cookie with refresh token
+        res.cookie('jwt', refreshToken, {
+            httpOnly: true, // accessible only on web server
+            secure: true, // https
+            sameSite: 'None', // cross-site cookie
+            maxAge: 7 * 24 * 60 * 60 * 1000 // cookie expiry set to match refreshToken
+        })
+
+        // send accessToken containing name, email username and role
+        res.json({ accessToken })
+    } catch (err) {
+        console.log(err)
     }
-
-    // create and store new user
-    const user = await User.create(userObject)
-
-    const metas = [
-        {
-            user,
-            meta: 'firstName',
-            value: firstName,
-            isEditable: false
-        },
-        {
-            user,
-            meta: 'familyName',
-            value: familyName,
-            isEditable: false
-        },
-        {
-            user,
-            meta: 'profile',
-            value: '/img/profile/default.png',
-            isEditable: false
-        },
-        {
-            user,
-            meta: 'lastActive',
-            value: new Date().getTime(),
-            isEditable: false
-        }
-    ]
-
-    // call function to create user metas
-    metas.map(meta => {
-        createUserMeta(meta)
-    })
-
-    if(!user) return sendStatus(res, 500, 'Server Error') 
-    
-    const accessToken = jwt.sign(
-        {
-        "UserInfo": {
-            "username": user.username,
-            "role": user.role
-        }
-    }, ACCESS_TOKEN_SECRET,
-    { expiresIn: '30m' }
-    )
-
-    const refreshToken = jwt.sign(
-        { "username": user.username },
-        REFRESH_TOKEN_SECRET,
-        {expiresIn: '7d'}
-    )
-
-    // Create secure cookie with refresh token
-    res.cookie('jwt', refreshToken, {
-        httpOnly: true, // accessible only on web server
-        secure: true, // https
-        sameSite: 'None', // cross-site cookie
-        maxAge: 7 * 24 * 60 * 60 * 1000 // cookie expiry set to match refreshToken
-    })
-
-    // send accessToken containing name, email username and role
-    res.json({ accessToken })
-
-
 }
 
 /**

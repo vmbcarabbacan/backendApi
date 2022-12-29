@@ -3,12 +3,12 @@ require('express-async-errors')
 const express = require('express')
 const app = express()
 const path = require('path')
-const { logger, logEvents } = require('./middleware/logger')
-const errorHandler = require('./middleware/errorHandler')
+const { logger, logEvents } = require('./src/middleware/logger')
+const errorHandler = require('./src/middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
-const corsOption = require('./config/corsOptions')
-const connectDB = require('./config/conns')
+const corsOption = require('./src/config/corsOptions')
+const connectDB = require('./src/config/conns')
 const mongoose = require('mongoose')
 const { PORT } = process.env
 
@@ -24,9 +24,9 @@ app.use(cookieParser())
 
 app.use('/', express.static(path.join(__dirname, 'public')))
 
-app.use('/', require('./routes/root'))
-app.use('/auth', require('./routes/authRoutes'))
-app.use('/users', require('./routes/userRoutes'))
+app.use('/', require('./src/routes/root'))
+app.use('/auth', require('./src/routes/authRoutes'))
+app.use('/users', require('./src/routes/userRoutes'))
 
 app.all('*', (req, res) => {
     res.status(404)
