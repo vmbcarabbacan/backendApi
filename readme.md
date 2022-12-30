@@ -10,6 +10,7 @@ vmbcarabbacan
 #links
 https://databasefaqs.com/mongodb-join-two-collections
 https://mongoosejs.com/docs/validation.html
+https://stackoverflow.com/questions/25483330/node-js-how-to-return-object-in-query-aggregation // need to check for aggregate with only  object
 
 #samples
 one to many with condition
@@ -40,3 +41,13 @@ const users = await User.aggregate([
       },
     },
   ])
+
+  #sample one to one relationship
+const users = await User.find()
+.select(['-password', '-__v'])
+.populate({
+  path: 'UserInformation',
+  select: '-__v',
+  match: { firstName: 'zack' }
+})
+.byUsername('zescarabbacan')
