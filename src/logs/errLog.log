@@ -1,2 +1,67 @@
 20221229	06:55:24	61e0213f-8547-4681-bd7c-ad8ee4a272f9	TypeError: User.select is not a function	GET	/users	undefined
 20221229	06:56:17	72838679-cd78-4234-abcf-b901f85cbdf6	Error: Invalid select: select only takes 1 argument	GET	/users	undefined
+20221229	20:12:22	907648f5-e7c5-4a8e-b998-98e2484b6d6b	StrictPopulateError: Cannot populate path `UserInformation` because it is not in your schema. Set the `strictPopulate` option to false to override.	GET	/users	undefined
+20221230	03:23:41	b087cbde-b874-4406-ab40-e3a4c336c6d3	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:24:33	a4402b0a-ae18-4c6c-922a-c74ff24e9b3c	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:25:32	e5424249-4d61-4d2c-81d1-b7f135e0a234	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:26:51	a3827b61-44d7-402a-8396-931134983be4	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:27:01	04c4fd4b-d26f-41dc-851e-615f7e169303	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:30:57	9ee62033-4c9e-4879-8a67-ab74ace97996	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:31:47	ace37885-1658-492e-95c4-cca0f733983e	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:32:08	27311de8-f7fb-4eeb-a1ca-9cc23e370b28	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:32:11	42c1bc16-98ac-4736-9b0d-d69e8e595a10	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:32:26	71da2ad2-a169-4a08-b380-9ffb6f5763a3	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:32:37	4e5332ab-e79c-40c4-95ca-cd6a87772385	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:32:50	9f8de788-86ed-43d2-bd3f-9e9b10f0c718	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/pagination	undefined
+20221230	03:38:00	58670541-3adc-4b68-971a-3d77d9ff3c47	MongoServerError: BSON field 'skip' value must be >= 0, actual value '-1'	GET	/users/pagination	undefined
+20221230	04:06:40	163dfc05-5c42-4c5c-b343-d72f9830a56e	SyntaxError: Unexpected token s in JSON at position 0	POST	/auth/logout	undefined
+20221230	04:19:23	822eb85f-884b-4a5b-90c4-907e80b5fde4	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\views\404.html'	GET	/auth	undefined
+20221230	04:19:37	d3dca86a-ed06-4617-8f03-3c5b90d756c3	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\views\404.html'	GET	/auth	undefined

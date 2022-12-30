@@ -10,11 +10,11 @@ const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: [true, 'Username is required'],
-        unique: true
+        unique: [true, 'Username already taken']
     },
     email: {
         type: String,
-        unique: true,
+        unique: [true, 'Email already taken'],
         lowercase: true,
         required: [true, 'Email is required'],
         validate(val) {
@@ -29,46 +29,63 @@ const userSchema = new mongoose.Schema({
     },
     role: {
         type: String,
+        enum: ['Admin', 'User', 'Manager', 'Driver', 'Account'],
         default: 'User'
     },
     active: {
         type: Boolean,
         default: true
     },
-    UserInformation: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'UserInformation'
+    userInformation: {
+        firstName: {
+            type: String,
+            lowercase: true,
+            required: [true, 'First name is required']
+        },
+        familyName: {
+            type: String,
+            lowercase: true,
+            required: [false, 'Family name is required']
+        },
+        contactNumber: {
+            type: String,
+            default: null
+        },
+        profile: {
+            type: String,
+            default: '/img/profile/default.png'
+        }
     }
 },
 {
     timestamps: true
 })
 
-userSchema.query.byName = (value) => {
+userSchema.query.byName = function(value){
     return this.where({ name: new RegExp(value, 'i') })
 }
 
-userSchema.query.byUsername = (value) => {
+userSchema.query.byUsername = function(value){
     return this.where({ username: new RegExp(value, 'i') })
 }
 
-userSchema.query.byEmail = (value) => {
+userSchema.query.byEmail = function(value){
     return this.where({ email: new RegExp(value, 'i') })
 }
 
-userSchema.query.byGeneric = (column ,value) => {
+userSchema.query.byGeneric = function(column ,value){
     return this.where({ [column]: new RegExp(value, 'i') })
 }
 
-userSchema.statics.getAll = (column ,value) => {
+userSchema.statics.getAll = function(column ,value){
     return this.find({ [column]: new RegExp(value, 'i') })
 }
 
-userSchema.statics.getOne = (column ,value) => {
+userSchema.statics.getOne = function(column ,value){
     return this.findOne({ [column]: new RegExp(value, 'i') })
 }
 
-userSchema.methods.isValidPassword = async (password) => {
+userSchema.methods.isValidPassword = async function(password){
     const user = this
     const compare = await bcrypt.compare(password, user.password)
 

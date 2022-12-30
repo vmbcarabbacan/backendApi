@@ -1,5 +1,4 @@
 const User = require('../models/User')
-const UserInformation = require('../models/UserInformation')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 const { containUndefined, containNull, containEmpty, sendStatus } = require('../services/global')
@@ -58,7 +57,7 @@ const login = async (req, res) => {
  */
 const register = async (req, res) => {
     try {
-        const { firstName, familyName, username, email, password } = req.body
+        const { firstName, familyName, username, email, password, contactNumber } = req.body
 
         // check if body contains undefined, null or empty
         if(containUndefined(Object.values(req.body)) || containNull(Object.values(req.body)) || containEmpty(Object.values(req.body))) return sendStatus(res, 400, 'All fields are required')
@@ -75,25 +74,20 @@ const register = async (req, res) => {
         delete req.body.password
         
         const fullName = `${firstName} ${familyName}`
+        const userObj = {
+            firstName,
+            familyName,
+            contactNumber
+        }
         const userObject = {
             ...req.body,
             name: fullName,
             password: hashPassword,
+            userInformation: userObj
         }
 
         // create and store new user
         const user = await User.create(userObject)
-
-        //create and store other information
-        const userObj = {
-            firstName: req.body.firstName,
-            familyName: req.body.familyName
-        }
-        const information = await UserInformation.create(userObj)
-
-        user.UserInformation = information
-        await user.save()
-
 
         if(!user) return sendStatus(res, 500, 'Server Error') 
         
@@ -129,21 +123,12 @@ const register = async (req, res) => {
 }
 
 /**
- * @desc Create user meta
- * @access Private
- */
-const createUserMeta = async (meta) => {
-    // create and store user metas
-    await UserMeta.create(meta)
-}
-
-/**
  * @desc Reresh
  * @route Get /auth/refresh
  * @access Public - access token expired
  */
 const refresh = (req, res) => {
-    const cookie = req.cookie
+    const cookie = req.cookies
 
     if(!cookie?.jwt) return res.status(401).json({ message: 'Unauthorized' })
 
@@ -179,7 +164,7 @@ const refresh = (req, res) => {
  * @access Public - clear the cookie if exists
  */
 const logout = (req, res) => {
-    const cookie = req.cookie
+    const cookie = req.cookies
     if(!cookie?.jwt) return res.sendStatus(204) // no content
 
     res.clearCookie('jwt', { httpOnly: true, sameSite: 'None', secure: true })
