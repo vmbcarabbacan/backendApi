@@ -65,3 +65,15 @@
 20221230	04:06:40	163dfc05-5c42-4c5c-b343-d72f9830a56e	SyntaxError: Unexpected token s in JSON at position 0	POST	/auth/logout	undefined
 20221230	04:19:23	822eb85f-884b-4a5b-90c4-907e80b5fde4	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\views\404.html'	GET	/auth	undefined
 20221230	04:19:37	d3dca86a-ed06-4617-8f03-3c5b90d756c3	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\views\404.html'	GET	/auth	undefined
+20221230	05:03:01	1f13be57-361b-43db-9974-810c0bca51d1	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Socket'
+    |     property 'parser' -> object with constructor 'HTTPParser'
+    --- property 'socket' closes the circle	GET	/users/pagination?page=1	undefined
+20221230	05:03:25	302110ca-3d2d-4664-8098-2c2517d755c6	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Socket'
+    |     property 'parser' -> object with constructor 'HTTPParser'
+    --- property 'socket' closes the circle	GET	/users/pagination?page=1	undefined
+20221230	05:03:52	d61cabd7-a4f8-47c2-9c88-82e9203f56fb	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Socket'
+    |     property 'parser' -> object with constructor 'HTTPParser'
+    --- property 'socket' closes the circle	GET	/users/pagination?page=1	undefined

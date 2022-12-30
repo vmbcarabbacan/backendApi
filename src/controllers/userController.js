@@ -19,7 +19,7 @@ const getUsers = async (req, res) => {
  * @access Public - will be change to Private after
  */
 const getPagination = async(req, res) => {
-  const page = 1
+  const page = parseInt(req.query.page)
   const per_page = 2
   const indexStart = (page - 1) * per_page
   const indexEnd = indexStart + per_page
@@ -36,7 +36,7 @@ const getPagination = async(req, res) => {
       total: count,
       from: indexStart + 1,
       end: indexEnd > count ? count : indexEnd,
-      size: totalPagination
+      size: totalPagination,
   }
 
   res.json(objPagination)

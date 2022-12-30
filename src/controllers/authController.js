@@ -1,7 +1,7 @@
 const User = require('../models/User')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const { containUndefined, containNull, containEmpty, sendStatus } = require('../services/global')
+const { isEmpty, sendStatus } = require('../services/global')
 
 const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = process.env
 /**
@@ -12,15 +12,15 @@ const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = process.env
 const login = async (req, res) => {
     const { username, password } = req.body
 
-    if(!username || !password) return res.status(400).json({ message: 'All fields are required' })
+    if(isEmpty(Object.values(req.body))) return sendStatus(res, 400, 'All fields are required')
 
     const user = await User.findOne({ username }).exec()
 
-    if(!user || !user.active) return res.status(401).json({ message: 'Unauthorized' })
+    if(!user || !user.active) return sendStatus(res, 401, 'Unauthorized')
 
     const match = await user.isValidPassword(password)
 
-    if(!match) return res.status(401).json({ message: 'Unauthorized' })
+    if(!match) return sendStatus(res, 401, 'Unauthorized')
 
     const accessToken = jwt.sign(
         {
@@ -60,7 +60,7 @@ const register = async (req, res) => {
         const { firstName, familyName, username, email, password, contactNumber } = req.body
 
         // check if body contains undefined, null or empty
-        if(containUndefined(Object.values(req.body)) || containNull(Object.values(req.body)) || containEmpty(Object.values(req.body))) return sendStatus(res, 400, 'All fields are required')
+        if(isEmpty(Object.values(req.body))) return sendStatus(res, 400, 'All fields are required')
 
         // Check for duplicates
         const duplicateUsername = await User.findOne({ username }).lean().exec()
@@ -118,7 +118,7 @@ const register = async (req, res) => {
         // send accessToken containing name, email username and role
         res.json({ accessToken })
     } catch (err) {
-        console.log(err)
+        sendStatus(res, 400, err.errors)
     }
 }
 
@@ -130,7 +130,7 @@ const register = async (req, res) => {
 const refresh = (req, res) => {
     const cookie = req.cookies
 
-    if(!cookie?.jwt) return res.status(401).json({ message: 'Unauthorized' })
+    if(!cookie?.jwt) return sendStatus(res, 401, 'Unauthorized')
 
     const refreshToken = cookie.jwt
 
@@ -138,11 +138,11 @@ const refresh = (req, res) => {
         refreshToken,
         REFRESH_TOKEN_SECRET,
         async (err, decoded) => {
-            if(err) return res.status(403).json({ message: 'Forbidden' })
+            if(err) return sendStatus(res, 403, 'Forbidden')
 
             const user = User.findOne({ username: decoded.username }).exec()
 
-            if(!user) return res.status(401).json({ message: 'Unauthorized' })
+            if(!user) return sendStatus(res, 401, 'Unauthorized')
 
             const accessToken = jwt.sign(
                 {

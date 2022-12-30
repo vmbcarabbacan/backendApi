@@ -45,7 +45,7 @@ const userSchema = new mongoose.Schema({
         familyName: {
             type: String,
             lowercase: true,
-            required: [false, 'Family name is required']
+            required: [true, 'Family name is required']
         },
         contactNumber: {
             type: String,
