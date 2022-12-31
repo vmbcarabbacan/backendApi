@@ -77,3 +77,127 @@
     --> starting at object with constructor 'Socket'
     |     property 'parser' -> object with constructor 'HTTPParser'
     --- property 'socket' closes the circle	GET	/users/pagination?page=1	undefined
+20221231	10:16:42	ae3bdb76-a065-4119-9797-2852acec212b	ReferenceError: alert is not defined	POST	/auth/register	undefined
+20221231	10:23:29	a5ec359b-5b9e-429e-83d3-bfd3604cd8af	ReferenceError: userObj is not defined	POST	/auth/register	undefined
+20221231	11:11:14	9ae88d54-71af-4092-ad69-a0efd6cb415f	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/current-user	undefined
+20221231	11:12:11	f3fbdb1b-3691-4649-b3c2-03bf07b42b08	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/current-user	undefined
+20221231	11:12:55	04d5bc18-d2e1-4c42-9b5d-ea312eb23eb1	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/current-user	undefined
+20221231	11:14:44	8e88b92a-2460-45a4-834b-5ad563c7930f	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/current-user	undefined
+20221231	11:14:55	418d5df2-54c7-449b-9d72-243c38ba516a	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/current-user	undefined
+20221231	11:15:01	629bbe62-8cb0-4e97-85c8-11a6ec6e5cef	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/current-user	undefined
+20221231	11:15:08	671146a6-2188-409c-aa9f-4e6630466cb8	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/current-user	undefined
+20221231	11:15:19	78b9036c-c971-4f33-ac11-9ec9ac08d638	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/current-user	undefined
+20221231	11:17:39	3a637fd5-c927-4bf8-9690-3b2705c2be3b	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	GET	/users/current-user	undefined
+20221231	11:34:19	cccebf31-bc6a-49f5-b928-8c0334d83d37	ReferenceError: jwt is not defined	GET	/users/current-user	undefined
+20221231	11:34:43	d254161f-f67b-4319-b64a-630947a63d3a	ReferenceError: User is not defined	GET	/users/current-user	undefined
+20221231	11:44:58	d4645170-8582-4ca2-a7f7-fd17a5076f4b	TypeError: Cannot read properties of undefined (reading 'split')	POST	/auth	undefined
+20221231	11:49:11	b7cd1cdb-e443-496c-94ae-0dd6651eb745	TypeError: Cannot read properties of undefined (reading 'UserInfo')	GET	/users	undefined
+20221231	12:17:16	af27d080-b490-4988-8e59-cdb40bc84e8d	ReferenceError: path is not defined	GET	/usersss	undefined
+20221231	12:17:40	f29ff47a-7a1f-4d69-b1cf-b32974c57f30	ReferenceError: path is not defined	GET	/users/asdasd	undefined
+20221231	12:17:51	f66a502d-9b07-4062-b513-8df618117322	ReferenceError: path is not defined	GET	/usersd	undefined
+20221231	12:21:30	ef106e35-93d0-45d1-8819-7e2c9afbcdb8	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address	undefined
+20221231	12:25:01	40ecbbc4-5ead-41c4-bc85-82fc002f381d	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address	undefined
+20221231	12:25:45	05e07d68-c82e-4bd2-916d-89c09944bbbe	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address	undefined
+20221231	12:25:47	164eb1aa-2e1b-46b1-84f5-ac0aaec8b77f	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address	undefined
+20221231	12:25:53	8f5b7c09-8244-4938-b26b-3cb429ec9b0c	TypeError: Cannot read properties of undefined (reading 'UserInfo')	GET	/users	undefined
+20221231	12:53:29	387f3179-a30d-4464-a0d5-c121dc4e6761	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'Socket'
+    |     property 'parser' -> object with constructor 'HTTPParser'
+    --- property 'socket' closes the circle	POST	/address/update?id=1	undefined
+20221231	12:53:40	0947c785-af63-4690-ad23-3f71afc40422	SyntaxError: Unexpected token o in JSON at position 1	POST	/address/update?id=1	undefined
+20221231	12:55:11	76f98f37-0f51-458c-bd7e-3e85b0d3c710	ReferenceError: path is not defined	POST	/address/update/1	undefined
+20221231	12:56:36	732ed058-bd67-451d-b143-2a2e5af93ef7	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address/update/1	undefined
+20221231	13:09:29	51687eee-742a-4d74-a792-41cb2391fd25	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	POST	/address/update/1	undefined
+20221231	13:10:10	2829d72c-9cb4-49b7-9971-7aac996604a3	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	POST	/address/update/1	undefined
+20221231	13:11:07	7efdb812-fd4b-4600-8096-6ece30c46faf	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	POST	/address/update/1	undefined
+20221231	13:11:40	c6b99a93-45a1-4e60-b24b-9674bf759345	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	POST	/address/update/1	undefined
+20221231	13:14:54	10b0c8de-5029-4867-ad1b-4c1d196f3842	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	POST	/address/update/1	undefined
+20221231	13:28:21	f06cc061-113b-40d7-b82a-3fe1db695f45	TypeError: Cannot read properties of null (reading 'addresses')	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	13:30:31	9159e884-424d-4deb-b201-c002ca15b1d7	TypeError: Converting circular structure to JSON
+    --> starting at object with constructor 'MongoClient'
+    |     property 's' -> object with constructor 'Object'
+    |     property 'sessionPool' -> object with constructor 'ServerSessionPool'
+    --- property 'client' closes the circle	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	13:33:15	85e85da6-f2ed-496c-9985-a10230ca0016	RangeError: Invalid status code: []	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	13:33:30	a993270f-2e35-4423-9a5c-5db841a1a095	Error: Cannot set headers after they are sent to the client	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	13:33:37	6255856a-89d4-48d1-a55b-7b1b6bf36c53	Error: Cannot set headers after they are sent to the client	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	13:33:58	49bccb6c-5478-4860-8387-2963e469ff1c	Error: Cannot set headers after they are sent to the client	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	13:35:37	8396767b-41a8-4258-942a-2449a8d6a385	TypeError: Cannot read properties of undefined (reading 'apply')	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	13:35:51	8d2dd071-09e8-462c-82ef-d88d77aad286	TypeError: Assignment to constant variable.	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	13:37:09	8fd3823f-5ad9-46cf-bf48-1194dcb2e729	TypeError: Assignment to constant variable.	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	13:57:56	1106c1c9-b395-415e-b892-ddfaa31ed6b4	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	14:02:58	d4b56c2b-0932-46ab-9e85-ed61256c5623	TypeError: req.body.forEach is not a function	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	14:03:33	1a14abe0-ecda-4018-a4c0-23c26c69527b	TypeError: b.forEach is not a function	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	14:06:54	e6bd55c5-f6d0-4fd1-81db-0e17e73aa43c	TypeError: Object.values(...).foreach is not a function	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	14:07:15	249795ec-97e0-4b25-934a-2219a568bf19	TypeError: Object.entries(...).foreach is not a function	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	14:29:22	8bb0e1fb-d54f-434f-b4aa-31dc4e886e76	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	14:31:03	83b668b9-e3cb-41bb-ab31-9d05a235ee6b	SyntaxError: Unexpected token o in JSON at position 1	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	14:41:22	115100ab-a3af-44a3-84ab-b4ac9cd92229	ReferenceError: da is not defined	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	14:52:13	a66c1dcb-8d9d-4c63-830a-7f34404f6acf	ReferenceError: treee is not defined	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	15:00:44	255e71b5-1383-428c-b071-68184554dd01	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	15:27:25	f1d8a6c6-d15d-4129-a768-88db6041dae3	MongoServerError: Cannot do inclusion on field coordinates in exclusion projection	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	15:35:55	a6273ea7-60b0-4962-94a6-2ad509d5f7cc	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	16:06:55	b0d7e4ab-bc66-4c72-8994-192a4ee7931a	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address/update/63aff4f2576e0bd3db379020	undefined
+20221231	16:38:28	7e8d7261-6926-4208-ae7f-62617298d747	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address/update/63aff569576e0bd3db37902b	undefined
+20221231	17:11:40	e029f2bc-c243-42c1-9da7-37b55e340be8	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/address/update/63aff569576e0bd3db37902b	undefined
+20221231	18:24:38	930511c0-0a67-47e1-acad-4df63330a760	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/users/update/63afd602302fdb17a0a513db	undefined
+20221231	18:56:37	5f139601-a1f4-46a9-8aef-8c4fcfc0c49f	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/users/update/63b04697709dc1d6fe073d21	undefined
+20221231	20:39:49	e6285dc8-41c7-4ee4-9877-502288e13c8c	Error: Cannot set headers after they are sent to the client	POST	/users/update/63b04697709dc1d6fe073d21	undefined
+20221231	20:40:24	c4066e43-ac29-4872-9ba5-91872bb81eec	Error: Cannot set headers after they are sent to the client	POST	/users/update/63b04697709dc1d6fe073d21	undefined
+20221231	20:40:43	f07ecdd7-ab80-4754-95c4-be46ac146993	Error: Cannot set headers after they are sent to the client	POST	/users/update/63b04697709dc1d6fe073d21	undefined
