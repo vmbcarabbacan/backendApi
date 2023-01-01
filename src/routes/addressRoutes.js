@@ -5,7 +5,7 @@ const verifyJWT = require('../middleware/verifyJWT')
 
 router.use(verifyJWT)
 
-router.route('/store').post(addressController.storeAddress)
-router.route('/update/:id').post(addressController.updateAddress)
+router.route('/store/:id').post(addressController.storeAddress)
+router.route('/update/:id').put(addressController.updateAddress)
 
 module.exports = router

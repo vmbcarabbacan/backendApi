@@ -2,6 +2,7 @@ const root = require("../routes/root");
 const auth = require("../routes/authRoutes");
 const users = require("../routes/userRoutes");
 const address = require("../routes/addressRoutes");
+const document = require("../routes/documentRoutes");
 
 const routes = [
   {
@@ -15,6 +16,10 @@ const routes = [
   {
     path: "/users",
     dir: users,
+  },
+  {
+    path: "/document",
+    dir: document,
   },
   {
     path: "/address",

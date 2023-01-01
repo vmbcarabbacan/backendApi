@@ -43,12 +43,12 @@ const addressSchema = new mongoose.Schema({
   coordinates: {
     type: [Number],
     default: [],
-    required: false
+    required: false,
   },
 });
 
 addressSchema.query.mySelectRemove = function () {
-  return this.select(['-__v', '-address', '-user', '-_id'])
+  return this.select(["-__v", "-address", "-user", "-_id"]);
 };
 
 addressSchema.plugin(AutoIncrement, {

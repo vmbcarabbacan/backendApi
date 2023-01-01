@@ -1,8 +1,10 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const Address = require("./Address");
+const Document = require("./Document");
 const UserInformation = require("./UserInformation");
 
+const roles = ["Admin", "User", "Manager", "Driver", "Account"]
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -33,8 +35,13 @@ const userSchema = new mongoose.Schema(
     },
     role: {
       type: String,
-      enum: ["Admin", "User", "Manager", "Driver", "Account"],
+      enum: roles,
       default: "User",
+      validate(val) {
+        if(!roles.includes(val)) {
+          throw new Error(`Role of ${val} is not supported`)
+        }
+      }
     },
     active: {
       type: Boolean,
@@ -46,6 +53,10 @@ const userSchema = new mongoose.Schema(
     },
     addresses: {
       type: [Address.schema],
+      required: false,
+    },
+    documents: {
+      type: [Document.schema],
       required: false,
     },
   },

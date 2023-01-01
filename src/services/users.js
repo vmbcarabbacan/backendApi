@@ -16,7 +16,8 @@ const getUserByUsername = async (req) => {
   return currentUser;
 };
 
-const getUserById = async ({ _id }) => {
+const getUser = async (req) => {
+  const _id = req.params.id
   return await User.findOne({ _id }).exec();
 };
 
@@ -84,4 +85,4 @@ const findUserInfo = async({ user }) => {
   return await UserInformation.findOne({ user }).mySelectRemove().exec()
 }
 
-module.exports = { getUserByUsername, getUserById, updateArrayOfObject, updateObjectOfObject, findUser, findUserInfo };
+module.exports = { getUserByUsername, getUser, updateArrayOfObject, updateObjectOfObject, findUser, findUserInfo };

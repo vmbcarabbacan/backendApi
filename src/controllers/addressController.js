@@ -2,7 +2,6 @@ const Address = require("../models/Address");
 const { sendStatus, setUpdateValue } = require("../services/global");
 const {
   getUserByUsername,
-  getUserById,
   updateArrayOfObject,
 } = require("../services/users");
 
@@ -34,7 +33,7 @@ const storeAddress = async (req, res) => {
 
 /**
  * @desc Update address
- * @route Post /address/update/:id
+ * @route Put /address/update/:id
  * @access Private
  */
 const updateAddress = async (req, res) => {
