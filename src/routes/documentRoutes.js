@@ -5,6 +5,7 @@ const verifyJWT = require('../middleware/verifyJWT')
 
 router.use(verifyJWT)
 
+router.route("/:id").get(documentController.getDocuments);
 router.route('/store/:id').post(documentController.storeDocument)
 router.route('/update/:id').put(documentController.updateDocument)
 

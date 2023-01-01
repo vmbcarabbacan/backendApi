@@ -1,9 +1,18 @@
 const Address = require("../models/Address");
 const { sendStatus, setUpdateValue } = require("../services/global");
-const {
-  getUserByUsername,
-  updateArrayOfObject,
-} = require("../services/users");
+const { getUserByUsername, updateArrayOfObject, getUser } = require("../services/users");
+
+/**
+ * @desc View addresses by :id
+ * @route Get /document/:id
+ * @access Private
+ */
+const getAddresses = async (req, res) => {
+  const user = await getUser(req);
+  const addresses = user.addresses;
+
+  sendStatus(res, 200, addresses);
+};
 
 /**
  * @desc Store address
@@ -37,7 +46,7 @@ const storeAddress = async (req, res) => {
  * @access Private
  */
 const updateAddress = async (req, res) => {
-  const { filter, update, _id } = setUpdateValue(req)
+  const { filter, update, _id } = setUpdateValue(req);
   try {
     await Address.updateOne(filter, update);
 
@@ -54,6 +63,7 @@ const updateAddress = async (req, res) => {
 };
 
 module.exports = {
+  getAddresses,
   storeAddress,
   updateAddress,
 };

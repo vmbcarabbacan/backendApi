@@ -1,9 +1,18 @@
 const Document = require("../models/Document");
 const { sendStatus, setUpdateValue } = require("../services/global");
-const {
-  updateArrayOfObject,
-  getUser,
-} = require("../services/users");
+const { updateArrayOfObject, getUser } = require("../services/users");
+
+/**
+ * @desc View documents by :id
+ * @route Get /document/:id
+ * @access Private
+ */
+const getDocuments = async (req, res) => {
+  const user = await getUser(req);
+  const documents = user.documents;
+
+  sendStatus(res, 200, documents);
+};
 
 /**
  * @desc Store document
@@ -12,12 +21,19 @@ const {
  */
 const storeDocument = async (req, res) => {
   try {
-    const { category } = req.body
+    const { category } = req.body;
     const user = await getUser(req);
 
-    const exist = user?.documents?.find(x => { return x.category == category })
+    const exist = user?.documents?.find((x) => {
+      return x.category == category;
+    });
 
-    if(exist) return sendStatus(res, 200, 'Category type already exist. Please select another category')
+    if (exist)
+      return sendStatus(
+        res,
+        200,
+        "Category type already exist. Please select another category"
+      );
 
     // create object for document
     const documentObj = {
@@ -30,7 +46,7 @@ const storeDocument = async (req, res) => {
     user.documents.push(document);
     user.save();
 
-    sendStatus(res, 200, 'Success');
+    sendStatus(res, 200, "Success");
   } catch (err) {
     sendStatus(res, 400, err.errors);
   }
@@ -42,16 +58,23 @@ const storeDocument = async (req, res) => {
  * @access Private
  */
 const updateDocument = async (req, res) => {
-  const { filter, update, _id } = setUpdateValue(req)
-  const { category } = req.body
+  const { filter, update, _id } = setUpdateValue(req);
+  const { category } = req.body;
   try {
     await Document.updateOne(filter, update);
-    
+
     const user = await getUser(req);
 
-    const exist = user?.documents?.find(x => { return x.category == category })
+    const exist = user?.documents?.find((x) => {
+      return x.category == category;
+    });
 
-    if(exist) return sendStatus(res, 200, 'Category type already exist. Please select another category')
+    if (exist)
+      return sendStatus(
+        res,
+        200,
+        "Category type already exist. Please select another category"
+      );
 
     // find updated document
     const document = await Document.findOne({ _id }).mySelectRemove().exec();
@@ -66,6 +89,7 @@ const updateDocument = async (req, res) => {
 };
 
 module.exports = {
+  getDocuments,
   storeDocument,
   updateDocument,
 };

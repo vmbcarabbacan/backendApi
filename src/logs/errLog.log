@@ -213,3 +213,5 @@
 20230101	12:04:09	f5eaf76b-2dda-43bf-a2f7-da05e25658e3	TypeError: Cannot read properties of undefined (reading 'UserInfo')	PUT	/address/update/63aff569576e0bd3db37902b	undefined
 20230101	12:04:29	04d796ba-ee62-4041-9c81-e7daf44a87cd	ReferenceError: path is not defined	PUT	/address/update/63aff569576e0bd3db37902b	undefined
 20230101	12:06:01	f437ae92-e3ad-4ab6-8093-f5f4b679d1fd	ReferenceError: path is not defined	PUT	/address/update/63b13ebda0c576a8e9dcea98	undefined
+20230101	23:17:13	b7263a31-b1d9-4c5f-9540-6d1c0dd52903	ReferenceError: getUser is not defined	GET	/address/63b04697709dc1d6fe073d21	undefined
+20230101	23:17:43	be150e32-9c73-4725-9121-79dbc28fb3b9	TypeError: Cannot read properties of undefined (reading 'UserInfo')	GET	/address/63b04697709dc1d6fe073d21	undefined
