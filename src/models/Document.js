@@ -20,6 +20,7 @@ const documentSchema = new mongoose.Schema({
   category: {
     type: String,
     enum: documentCategory,
+    required: true,
     default: null,
     validate(val) {
       if (!documentCategory.includes(val)) {
@@ -40,6 +41,7 @@ const documentSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: statuses,
+    required: true,
     default: "Pending",
     validate(val) {
       if (!statuses.includes(val)) {
