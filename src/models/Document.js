@@ -38,6 +38,11 @@ const documentSchema = new mongoose.Schema({
     default: null,
     required: false,
   },
+  imagePath: {
+    type: String,
+    required: false,
+    default: null
+  },
   status: {
     type: String,
     enum: statuses,

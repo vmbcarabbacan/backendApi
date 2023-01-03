@@ -3,6 +3,7 @@ const bcrypt = require("bcrypt");
 const Address = require("./Address");
 const Document = require("./Document");
 const UserInformation = require("./UserInformation");
+const Trip = require("./Trip");
 
 const roles = ["Admin", "User", "Manager", "Driver", "Account"]
 const userSchema = new mongoose.Schema(
@@ -57,6 +58,10 @@ const userSchema = new mongoose.Schema(
     },
     documents: {
       type: [Document.schema],
+      required: false,
+    },
+    trips: {
+      type: [Trip.schema],
       required: false,
     },
   },
