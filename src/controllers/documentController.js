@@ -1,6 +1,7 @@
 const Document = require("../models/Document");
 const { sendStatus, setUpdateValue } = require("../services/global");
 const { updateArrayOfObject, getUser } = require("../services/users");
+const path = require("path");
 
 /**
  * @desc View documents by :id
@@ -85,6 +86,17 @@ const updateDocument = async (req, res) => {
     res.json({ message: "Success" });
   } catch (err) {
     sendStatus(res, 401, err.message);
+  }
+
+  /**
+   * @desc upload documents
+   * @access Private
+   */
+  const uploadImage = (res, req) => {
+    if(!req.file) sendStatus(res, 400, 'file is missing')
+
+    const imgUrl = path.join(__dirname, '..', `/file/${req.file.filename}`)
+    return imgUrl
   }
 };
 

@@ -3,30 +3,31 @@ const auth = require("../routes/authRoutes");
 const users = require("../routes/userRoutes");
 const address = require("../routes/addressRoutes");
 const document = require("../routes/documentRoutes");
+const path = require("path");
 
 const routes = [
   {
-    path: "/",
+    location: "/",
     dir: root,
   },
   {
-    path: "/auth",
+    location: "/auth",
     dir: auth,
   },
   {
-    path: "/users",
+    location: "/users",
     dir: users,
   },
   {
-    path: "/document",
+    location: "/document",
     dir: document,
   },
   {
-    path: "/address",
+    location: "/address",
     dir: address,
   },
   {
-    path: '*',
+    location: '*',
     dir: (req, res) => {
         res.status(404);
         if (req.accepts("html")) {

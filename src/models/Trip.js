@@ -33,6 +33,22 @@ const tripSchema = new mongoose.Schema({
             }
         }
     },
+    exclusive: {
+        type: mongoose.Schema.Types.Decimal128,
+        default: 0.00
+    },
+    vat: {
+        type: mongoose.Schema.Types.Decimal128,
+        default: 0.00
+    },
+    total: {
+        type: mongoose.Schema.Types.Decimal128,
+        default: 0.00
+    },
+    customerRating: {
+        type: Number,
+        default: 0
+    },
     status: {
         type: String,
         enum: statuses,
