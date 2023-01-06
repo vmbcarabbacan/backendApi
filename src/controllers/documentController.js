@@ -1,5 +1,5 @@
 const Document = require("../models/Document");
-const { sendStatus, setUpdateValue } = require("../services/global");
+const { sendStatus, setUpdateValue, imageUrl } = require("../services/global");
 const { updateArrayOfObject, getUser } = require("../services/users");
 const path = require("path");
 
@@ -29,6 +29,10 @@ const storeDocument = async (req, res) => {
       return x.category == category;
     });
 
+    if(!req.file) sendStatus(res, 400, 'Document is missing')
+
+    const url = imageUrl(req.file.filename);
+
     if (exist)
       return sendStatus(
         res,
@@ -39,6 +43,7 @@ const storeDocument = async (req, res) => {
     // create object for document
     const documentObj = {
       user,
+      imagePath: url,
       ...req.body,
     };
     const document = await Document.create(documentObj);
@@ -88,16 +93,6 @@ const updateDocument = async (req, res) => {
     sendStatus(res, 401, err.message);
   }
 
-  /**
-   * @desc upload documents
-   * @access Private
-   */
-  const uploadImage = (res, req) => {
-    if(!req.file) sendStatus(res, 400, 'file is missing')
-
-    const imgUrl = path.join(__dirname, '..', `/file/${req.file.filename}`)
-    return imgUrl
-  }
 };
 
 module.exports = {

@@ -3,14 +3,7 @@ const User = require('./User');
 
 const statuses = ['Pending', 'Onboard', 'Completed', 'Cancelled', 'Rescheduled']
 const tripSchema = new mongoose.Schema({
-    passenger: {
-        type: User.schema,
-        required: true
-    },
-    driver: {
-        type: User.schema,
-        required: false
-    },
+    
     fromDestination: {
         type: [Number],
         default: [],
@@ -59,6 +52,14 @@ const tripSchema = new mongoose.Schema({
                 throw new Error(`${value} is not correct format for status`)
             }
         }
+    },
+    passenger: {
+        type: User,
+        required: true
+    },
+    driver: {
+        type: User,
+        required: false
     }
 })
 

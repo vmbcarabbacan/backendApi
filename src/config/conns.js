@@ -8,7 +8,7 @@ const connectDB = async () => {
             useCreateIndex: true,
             useUnifiedTopology: true
         }
-        await mongoose.connect(DATABASE_URI, connectionParams)
+        await mongoose.connect(DATABASE_URI)
     } catch (err) {
         console.log(err)
     }

@@ -34,8 +34,19 @@ const setUpdateValue = (req, objValues = null, id = null) => {
   return { filter, update, _id };
 };
 
+  /**
+   * @desc get 
+   * @access Private
+   */
+   const imageUrl = (file) => {
+    const { IMAGE_URL } = process.env
+    const url = `${IMAGE_URL}/file/${file}`
+    return url
+  }
+
 module.exports = {
   sendStatus,
   isEmpty,
   setUpdateValue,
+  imageUrl,
 };
