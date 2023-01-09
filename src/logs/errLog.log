@@ -215,3 +215,7 @@
 20230101	12:06:01	f437ae92-e3ad-4ab6-8093-f5f4b679d1fd	ReferenceError: path is not defined	PUT	/address/update/63b13ebda0c576a8e9dcea98	undefined
 20230101	23:17:13	b7263a31-b1d9-4c5f-9540-6d1c0dd52903	ReferenceError: getUser is not defined	GET	/address/63b04697709dc1d6fe073d21	undefined
 20230101	23:17:43	be150e32-9c73-4725-9121-79dbc28fb3b9	TypeError: Cannot read properties of undefined (reading 'UserInfo')	GET	/address/63b04697709dc1d6fe073d21	undefined
+20230109	11:11:37	9378da2d-fbf8-46fd-af22-c19c1ff783c6	Error: Cannot set headers after they are sent to the client	POST	/document/store/63b04697709dc1d6fe073d21	undefined
+20230109	11:12:53	b272c26b-96fd-4ad3-9b4e-c162f9d198a9	Error: Cannot set headers after they are sent to the client	POST	/document/store/63b04697709dc1d6fe073d21	undefined
+20230109	11:16:57	d25b1d12-74c1-4a8b-808b-9adf0c0499cd	Error: Cannot set headers after they are sent to the client	POST	/document/store/63b04697709dc1d6fe073d21	undefined
+20230109	11:43:26	2e84cbac-bfff-48eb-acc1-3e069a66f320	TypeError: Cannot read properties of undefined (reading 'UserInfo')	POST	/document/store/63b04697709dc1d6fe073d21	undefined

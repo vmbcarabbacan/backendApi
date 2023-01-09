@@ -33,7 +33,7 @@ const login = async (req, res) => {
         },
       },
       ACCESS_TOKEN_SECRET,
-      { expiresIn: "30m" }
+      { expiresIn: "1d" }
     );
 
     const refreshToken = jwt.sign(
@@ -116,7 +116,7 @@ const register = async (req, res) => {
         },
       },
       ACCESS_TOKEN_SECRET,
-      { expiresIn: "30m" }
+      { expiresIn: "1d" }
     );
 
     const refreshToken = jwt.sign(
@@ -167,7 +167,7 @@ const refresh = (req, res) => {
         },
       },
       ACCESS_TOKEN_SECRET,
-      { expiresIn: "30m" }
+      { expiresIn: "1d" }
     );
     res.json({ accessToken });
   });

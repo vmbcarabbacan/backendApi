@@ -12,7 +12,7 @@ const corsOption = require("./src/config/corsOptions");
 const connectDB = require("./src/config/conns");
 const routes = require("./src/config/routes");
 const mongoose = require("mongoose");
-const { Grid } = require("gridfs-stream");
+const Grid = require("gridfs-stream");
 const { PORT } = process.env;
 
 connectDB();
@@ -21,10 +21,12 @@ app.use(logger);
 
 // app.use(headers);
 
+mongoose.set('strictQuery', false);
+
 const conn = mongoose.connection
 conn.once('open', function() {
   gfs = Grid(conn.db, mongoose.mongo)
-  gfs
+  gfs.collection("photos");
 })
 
 app.use(cors(corsOption));
