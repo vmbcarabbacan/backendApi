@@ -1,6 +1,7 @@
 const Document = require("../models/Document");
 const { sendStatus, setUpdateValue, imageUrl } = require("../services/global");
 const { updateArrayOfObject, getUser } = require("../services/users");
+const s3Uploadv2 = require('../services/awsS3');
 const path = require("path");
 
 /**
@@ -31,14 +32,12 @@ const storeDocument = async (req, res) => {
 
     if(!req.file) sendStatus(res, 400, 'Document is missing')
 
-    const url = imageUrl(req.file.filename);
-
+    const url = await s3Uploadv2(req.file);
+    console.log('here')
     if (exist)
-      return sendStatus(
-        res,
-        200,
-        "Category type already exist. Please select another category"
-      );
+      return sendStatus(res, 200 ,"Category type already exist. Please select another category");
+
+      
 
     // create object for document
     const documentObj = {

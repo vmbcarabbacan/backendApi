@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index",
+    "warning": "node --trace-warnings",
     "dev": "nodemon index"
   },
   "repository": {
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/vmbcarabbacan/backendApi#readme",
   "dependencies": {
+    "aws-sdk": "^2.1291.0",
     "bcrypt": "^5.1.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
