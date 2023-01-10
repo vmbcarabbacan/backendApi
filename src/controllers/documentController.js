@@ -32,22 +32,20 @@ const storeDocument = async (req, res) => {
 
     if(!req.file) sendStatus(res, 400, 'Document is missing')
 
-    const url = await s3Uploadv2(req.file);
-    console.log('here')
     if (exist)
       return sendStatus(res, 200 ,"Category type already exist. Please select another category");
 
-      
+    const url = await s3Uploadv2(req.file);
 
     // create object for document
     const documentObj = {
       user,
-      imagePath: url,
+      imagePath: url.Location,
       ...req.body,
     };
+    // console.log(documentObj)
     const document = await Document.create(documentObj);
-
-    // // push document to user documentes object
+    // push document to user documentes object
     user.documents.push(document);
     user.save();
 

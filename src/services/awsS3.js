@@ -2,7 +2,6 @@ const { S3 } = require("aws-sdk")
 const { v4: uuid } = require("uuid");
 
 const s3Uploadv2 = async (file) => {
-	console.log('s3')
 	const s3 = new S3({
 		accessKeyId: process.env.AWS_ACCESS_KEY_ID,
 		secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
