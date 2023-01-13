@@ -1,6 +1,6 @@
 const Document = require("../models/Document");
 const { sendStatus, setUpdateValue, imageUrl } = require("../services/global");
-const { updateArrayOfObject, getUser } = require("../services/users");
+const { updateArrayOfObject, pushArrayOfObject, getUser } = require("../services/users");
 const s3Uploadv2 = require('../services/awsS3');
 const path = require("path");
 
@@ -27,7 +27,7 @@ const storeDocument = async (req, res) => {
     const user = await getUser(req);
 
     const exist = user?.documents?.find((x) => {
-      return x.category == category;
+      return x.category === category;
     });
 
     if(!req.file) sendStatus(res, 400, 'Document is missing')
@@ -45,9 +45,9 @@ const storeDocument = async (req, res) => {
     };
     // console.log(documentObj)
     const document = await Document.create(documentObj);
-    // push document to user documentes object
-    user.documents.push(document);
-    user.save();
+    
+    // update the document inside user object
+    await pushArrayOfObject("documents", user._id, document);
 
     sendStatus(res, 200, "Success");
   } catch (err) {

@@ -1,6 +1,6 @@
 const Address = require("../models/Address");
 const { sendStatus, setUpdateValue } = require("../services/global");
-const { getUserByUsername, updateArrayOfObject, getUser } = require("../services/users");
+const { pushArrayOfObject, updateArrayOfObject, getUser } = require("../services/users");
 
 /**
  * @desc View addresses by :id
@@ -21,7 +21,7 @@ const getAddresses = async (req, res) => {
  */
 const storeAddress = async (req, res) => {
   try {
-    const user = await getUserByUsername(req);
+    const user = await getUser(req);
 
     // create object for address
     const addressObj = {
@@ -31,8 +31,7 @@ const storeAddress = async (req, res) => {
     const address = await Address.create(addressObj);
 
     // push address to user addresses object
-    user.addresses.push(address);
-    user.save();
+    await pushArrayOfObject("addresses", user._id, address);
 
     sendStatus(res, 200, "successfully save");
   } catch (err) {

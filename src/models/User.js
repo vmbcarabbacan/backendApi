@@ -5,7 +5,8 @@ const Document = require("./Document");
 const UserInformation = require("./UserInformation");
 const Trip = require("./Trip");
 
-const roles = ["Admin", "User", "Manager", "Driver", "Account"]
+const roles = ["Admin", "User", "Manager", "Driver", "Account"];
+const statuses = ["Unoccupied", "Occupied"];
 const userSchema = new mongoose.Schema(
   {
     name: {
@@ -39,14 +40,24 @@ const userSchema = new mongoose.Schema(
       enum: roles,
       default: "User",
       validate(val) {
-        if(!roles.includes(val)) {
-          throw new Error(`Role of ${val} is not supported`)
+        if (!roles.includes(val)) {
+          throw new Error(`Role of ${val} is not supported`);
         }
-      }
+      },
     },
     active: {
       type: Boolean,
       default: true,
+    },
+    status: {
+      type: String,
+      enum: statuses,
+      default: "Unoccupied",
+      validate(val) {
+        if (!statuses.includes(val)) {
+          throw new Error(`Status of ${val} is not supported`);
+        }
+      },
     },
     userInfo: {
       type: UserInformation.schema,
@@ -64,14 +75,37 @@ const userSchema = new mongoose.Schema(
       type: [Trip.schema],
       required: false,
     },
+    books: {
+      type: [Trip.schema],
+      required: false,
+    },
   },
   {
     timestamps: true,
   }
 );
 
-userSchema.query.mySelect = function() {
-    return this.select([ '-passowrd', '-__v', '-userInfo.__v', '-userInfo.user', '-userInfo._id' ])
+userSchema.query.mySelect = function () {
+  return this.select([
+    "-passowrd",
+    "-__v",
+    "-userInfo.__v",
+    "-userInfo.user",
+    "-userInfo._id",
+  ]);
+};
+
+userSchema.query.importantField = function () {
+  return this.select([
+    "_id",
+    "name",
+    "username",
+    "email",
+    "role",
+    "active",
+    "createdAt",
+    "updatedAt"
+  ])
 }
 
 userSchema.query.byName = function (value) {
@@ -96,6 +130,10 @@ userSchema.statics.getAll = function (column, value) {
 
 userSchema.statics.getOne = function (column, value) {
   return this.findOne({ [column]: new RegExp(value, "i") });
+};
+
+userSchema.query.byDriver = function () {
+  return this.where({ role: "Driver", active: true }).sort({ created_at: 1 });
 };
 
 userSchema.methods.isValidPassword = async function (password) {

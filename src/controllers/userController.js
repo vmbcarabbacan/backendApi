@@ -2,7 +2,7 @@ const User = require("../models/User");
 const UserInformation = require("../models/UserInformation");
 const bcrypt = require("bcrypt");
 const { sendStatus, setUpdateValue, isEmpty } = require("../services/global");
-const { getUserByUsername, findUserInfo, findUser, updateObjectOfObject } = require("../services/users");
+const { getUserByUsername, findUserInfo, updateObjectOfObject } = require("../services/users");
 
 /**
  * @desc Get all user

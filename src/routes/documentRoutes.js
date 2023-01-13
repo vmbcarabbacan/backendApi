@@ -3,7 +3,7 @@ const router = expres.Router()
 const documentController = require('../controllers/documentController')
 const verifyJWT = require('../middleware/verifyJWT')
 // const upload = require("../middleware/upload");
-const upload = require("../middleware/upload");
+const upload = require("../middleware/upload-s3");
 
 router.use(verifyJWT)
 

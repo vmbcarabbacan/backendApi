@@ -28,25 +28,33 @@ const setUpdateValue = (req, objValues = null, id = null) => {
 
   const filter = { _id };
   const update = objValues
-      ? { $set: { ...objValues } }
-      : { $set: { ...req.body } };
+    ? { $set: { ...objValues } }
+    : { $set: { ...req.body } };
 
   return { filter, update, _id };
 };
 
-  /**
-   * @desc get 
-   * @access Private
-   */
-   const imageUrl = (file) => {
-    const { IMAGE_URL } = process.env
-    const url = `${IMAGE_URL}/file/${file}`
-    return url
-  }
+/**
+ * @desc get
+ * @access Private
+ */
+const imageUrl = (file) => {
+  const { IMAGE_URL } = process.env;
+  const url = `${IMAGE_URL}/file/${file}`;
+  return url;
+};
+
+/**
+ * @desc Get random number
+ */
+const randomNumber = (num) => {
+  return Math.floor(Math.random() * num);
+};
 
 module.exports = {
   sendStatus,
   isEmpty,
   setUpdateValue,
   imageUrl,
+  randomNumber,
 };
