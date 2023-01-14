@@ -3,7 +3,7 @@ name: Vincent Mark CICD for booking to aws ec2
 on:
   push:
     branches:
-	- main
+			- main
 
 jobs:
   build:
