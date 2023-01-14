@@ -44,7 +44,5 @@ jobs:
             nvm install 16
             npm install -g pm2
             cd /home/ec2-user
-            git config --global user.name "vmbcarabbacan"
-            git config --global user.email "vmbcarabbacan@gmail.com"
-            git pull origin main
+            git remote set-url origin https://vmbcarabbacan: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@github.com:vmbcarabbacan/backendApi.git
             pm2 restart index.js
