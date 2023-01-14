@@ -38,5 +38,11 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+            . ~/.nvm/nvm.sh
+
+            nvm install 16
+            npm install -g pm2
+            cd /home/ec2-user
             git pull origin main
             pm2 restart index.js
