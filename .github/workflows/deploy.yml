@@ -44,5 +44,7 @@ jobs:
             nvm install 16
             npm install -g pm2
             cd /home/ec2-user
-            git pull origin main -u vmbcarabbacan -p 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
+            git config --global user.name "vmbcarabbacan"
+            git config --global user.email "vmbcarabbacan@gmail.com"
+            git pull origin main
             pm2 restart index.js
