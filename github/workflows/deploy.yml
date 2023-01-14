@@ -1,0 +1,52 @@
+name: Vincent Mark CICD for booking to aws ec2
+
+on:
+  push:
+    branches:
+	- main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+	matrix:
+	  node-version: [16.x]
+
+    steps:
+	- uses: actions/checkout@v3
+	- name: Use node js
+	  uses: actions/setup-node@v1
+	  with:
+	    node-version: ${{ matrix.node-version }}
+	- name: npm install and build
+	  run: |
+	    npm install
+	    npm run build
+
+	  env:
+	    CI: true
+
+deploy:
+  needs: [build]
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: SSH deploy
+      uses: appleboy/ssh-action@master
+      with:
+	host: ${{ secrets.HOST }}
+	username: ${{ secrets.USERNAME }}
+	key: ${{ secrets.KEY }}
+	port: ${{ secrets.PORT }}
+
+	script: |
+	  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+	  . ~/.nvm/nvm.sh
+
+	  nvm install 16
+	  npm install -g pm2
+	  cd /home/ec2-user
+	  git pull origin main
+	  npm install
+	  npm run build
+	  pm2 restart api

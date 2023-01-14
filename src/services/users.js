@@ -117,25 +117,25 @@ const findUnoccupiedDriver = async () => {
   // if there is no available driver return null
   if(unoccupied.length === 0) return null
 
-  // if (fs.existsSync(myJson)) {
-  //   const data = fs.readFileSync(myJson);
-  //   json = JSON.parse(data);
-  // }
+  if (fs.existsSync(myJson)) {
+    const data = fs.readFileSync(myJson);
+    json = JSON.parse(data);
+  }
 
-  // if (json) {
-  //   const currentSelected = unoccupied.findIndex((x) => {
-  //     return x._id === json.selected;
-  //   });
+  if (json) {
+    const currentSelected = unoccupied.findIndex((x) => {
+      return x._id === json.selected;
+    });
 
-  //   // if selected driver is equal to previous selected driver; run function again
-  //   if (randomNumber(unoccupied.length - 1) === currentSelected)
-  //     findUnoccupiedDriver();
+    // if selected driver is equal to previous selected driver; run function again
+    if (randomNumber(unoccupied.length - 1) === currentSelected)
+      findUnoccupiedDriver();
 
-  //   index = randomNumber(unoccupied.length - 1);
+    index = randomNumber(unoccupied.length - 1);
 
-  //   // delete object
-  //   delete json.selected;
-  // }
+    // delete object
+    delete json.selected;
+  }
   const unoccupiedData = unoccupied[index];
 
   // if selected driver is not unoccupied run the function again
@@ -146,7 +146,7 @@ const findUnoccupiedDriver = async () => {
     ...json,
   };
 
-  // fs.writeFileSync(myJson, JSON.stringify(file));
+  fs.writeFileSync(myJson, JSON.stringify(file));
   return unoccupiedData;
 };
 
