@@ -37,15 +37,14 @@ jobs:
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
+          script: |
+            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+            . ~/.nvm/nvm.sh
 
-    script: |
-      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-      . ~/.nvm/nvm.sh
-
-      nvm install 16
-      npm install -g pm2
-      cd /home/ec2-user
-      git pull origin main
-      npm install
-      npm run build
-      pm2 restart api
+            nvm install 16
+            npm install -g pm2
+            cd /home/ec2-user
+            git pull origin main
+            npm install
+            npm run build
+            pm2 restart api
