@@ -38,53 +38,5 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-            . ~/.nvm/nvm.sh
-
-            nvm install 16
-            npm install -g pm2
-            cd /home/ec2-user
-            git pull origin main
-            npm install
-            name: Vincent Mark CICD for booking to aws ec2
-
-on:
-  push:
-    branches: [ main ]
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [ 16 ]
-    name: Node ${{ matrix.node }} CICD
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup node
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node }}
-      - name: Setup node
-        run: |
-          npm install
-          npm run start
-
-        env:
-          CI: true
-
-  deploy:
-    needs: [build]
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: SSH deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
             git pull origin main
             pm2 restart index.js
