@@ -44,5 +44,5 @@ jobs:
             nvm install 16
             npm install -g pm2
             cd /home/ec2-user
-            git pull origin main
+            git@github.com:vmbcarabbacan/backendApi.git
             pm2 restart index.js
