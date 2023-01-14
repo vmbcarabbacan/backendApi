@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         node: [ 16 ]
-    name: Node ${{ matrix.node }} sample
+    name: Node ${{ matrix.node }} CICD
     steps:
       - uses: actions/checkout@v3
       - name: Setup node
@@ -20,7 +20,7 @@ jobs:
       - name: Setup node
         run: |
           npm install
-          npm run build
+          npm run start
 
         env:
           CI: true
@@ -46,5 +46,4 @@ jobs:
             cd /home/ec2-user
             git pull origin main
             npm install
-            npm run build
-            pm2 restart api
+            pm2 start index.js
