@@ -29,7 +29,7 @@ app.use(logger);
 //   gfs.collection("photos");
 // })
 
-app.options('*', cors(corsOption));
+app.use(cors(corsOption));
 
 app.use(express.json());
 
