@@ -43,6 +43,13 @@ routes.map((x) => {
 
 app.use(errorHandler);
 
+//cors enable functions
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "ec2-18-183-129-38.ap-northeast-1.compute.amazonaws.com"); // update to match the domain you will make the request from
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 mongoose.connection.once("open", () => {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 });
