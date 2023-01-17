@@ -112,3 +112,5 @@
 20230117	15:11:52	097e6faa-5539-4e81-8546-c5e1d811e738	OPTIONS: /auth	http://localhost:8080
 20230117	15:11:52	d0cb11b3-791a-41f0-bba8-46c85195dbc6	POST: /auth	http://localhost:8080
 20230117	15:11:53	9caa2e41-0430-416b-82a7-5913812a14ff	POST: /auth	http://localhost:8080
+20230117	15:13:55	973985ad-f6c5-4a61-84e6-41bac93ba370	OPTIONS: /auth	http://localhost:8080
+20230117	15:13:55	44552840-6e49-4b49-96cd-b1e5551fcc28	POST: /auth	http://localhost:8080
