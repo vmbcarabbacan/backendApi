@@ -11,7 +11,8 @@ const corsOption = {
     methods: "GET, HEAD, PUT, PATCH, POST, DELETE",
     credentials: true,
     preflightContinue: false,
-    optionsSuccessStatus: 200
+    optionsSuccessStatus: 200,
+    maxAge: 3600
 }
 
 module.exports = corsOption
