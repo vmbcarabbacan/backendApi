@@ -43,7 +43,8 @@ jobs:
 
             nvm install 16
             nvm use 16
-            cd ~/be
+            git config --global --add safe.directory /home/ec2-user/be
+            cd /home/ec2-user/be
             git pull ${{ secrets.BRANCH }} main
             pm2 stop index
             pm2 start index
