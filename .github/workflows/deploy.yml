@@ -43,6 +43,7 @@ jobs:
 
             nvm install 16
             nvm use 16
+            npm install -g pm2
             git config --global --add safe.directory /home/ec2-user/be
             cd /home/ec2-user/be
             git pull ${{ secrets.BRANCH }} main
