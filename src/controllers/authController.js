@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
     if (!match) return sendStatus(res, 401, "Unauthorized");
 
-    const accessToken = jwt.sign(
+    const token = jwt.sign(
       {
         UserInfo: {
           username: user.username,
@@ -50,8 +50,8 @@ const login = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, // cookie expiry set to match refreshToken
     });
 
-    // send accessToken containing name, email username and role
-    res.json({ accessToken });
+    // send token containing name, email username and role
+    res.json({ token });
   } catch (err) {
     sendStatus(res, 400, err.errors);
   }
@@ -108,7 +108,7 @@ const register = async (req, res) => {
 
     if (!user) return sendStatus(res, 500, "Server Error");
 
-    const accessToken = jwt.sign(
+    const token = jwt.sign(
       {
         UserInfo: {
           username: user.username,
@@ -133,8 +133,8 @@ const register = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000, // cookie expiry set to match refreshToken
     });
 
-    // send accessToken containing name, email username and role
-    res.json({ accessToken });
+    // send token containing name, email username and role
+    res.json({ token });
   } catch (err) {
     sendStatus(res, 400, err.errors);
   }
@@ -159,7 +159,7 @@ const refresh = (req, res) => {
 
     if (!user) return sendStatus(res, 401, "Unauthorized");
 
-    const accessToken = jwt.sign(
+    const token = jwt.sign(
       {
         UserInfo: {
           username: user.username,
@@ -169,7 +169,7 @@ const refresh = (req, res) => {
       ACCESS_TOKEN_SECRET,
       { expiresIn: "1d" }
     );
-    res.json({ accessToken });
+    res.json({ token });
   });
 };
 
