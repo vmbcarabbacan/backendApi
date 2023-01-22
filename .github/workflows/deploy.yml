@@ -46,4 +46,5 @@ jobs:
             git config --global --add safe.directory ${{ secrets.DIRECTORY }}
             cd ${{ secrets.DIRECTORY }}
             git pull ${{ secrets.BRANCH }} main
-            pm2 restart index
+            pm2 stop index.js
+            pm2 start index.js
