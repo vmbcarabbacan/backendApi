@@ -13,7 +13,7 @@ const getUserByUsername = async (req) => {
   const decoded = jwt.decode(token)?.UserInfo;
 
   const currentUser = await User.findOne({})
-    .mySelect()
+    .importantField()
     .byUsername(decoded.username)
     .exec();
 

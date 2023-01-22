@@ -53,7 +53,7 @@ const getPagination = async (req, res) => {
  * @access Private
  */
 const getCurrentUser = async (req, res) => {
-  const currentUser = await getUserByUsername(req).importantField();
+  const currentUser = await getUserByUsername(req);
 
   res.json({currentUser});
 };
