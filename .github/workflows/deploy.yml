@@ -42,7 +42,8 @@ jobs:
             . ~/.nvm/nvm.sh
 
             nvm install 16
-            npm install -g pm2
-            cd /home/ec2-user
+            nvm use 16
+            cd /home/ec2-user/be
             git pull ${{ secrets.BRANCH }} main
-            pm2 restart index.js
+            pm2 stop index
+            pm2 start index
