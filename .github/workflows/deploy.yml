@@ -45,6 +45,6 @@ jobs:
             nvm use 16
             git config --global --add safe.directory ${{ secrets.DIRECTORY }}
             cd ${{ secrets.DIRECTORY }}
-            git pull ${{ secrets.BRANCH }} main
+            git pull https://${{ secrets.UNAME }}:${{ secrets.PASSWORD }}@${{ secrets.BGIT }} main
             pm2 stop index.js
             pm2 start index.js
