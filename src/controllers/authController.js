@@ -45,7 +45,7 @@ const login = async (req, res) => {
     // Create secure cookie with refresh token
     res.cookie("jwt", refreshToken, {
       httpOnly: true, // accessible only on web server
-      secure: false, // https to be change
+      secure: true, // https to be change
       sameSite: "None", // cross-site cookie
       maxAge: 7 * 24 * 60 * 60 * 1000, // cookie expiry set to match refreshToken
     });
@@ -128,7 +128,7 @@ const register = async (req, res) => {
     // Create secure cookie with refresh token
     res.cookie("jwt", refreshToken, {
       httpOnly: true, // accessible only on web server
-      secure: false, // https to be change
+      secure: true, // https to be change
       sameSite: "None", // cross-site cookie
       maxAge: 7 * 24 * 60 * 60 * 1000, // cookie expiry set to match refreshToken
     });
@@ -182,7 +182,7 @@ const logout = (req, res) => {
   const cookie = req.cookies;
   if (!cookie?.jwt) return res.sendStatus(204); // no content
 
-  res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: false });
+  res.clearCookie("jwt", { httpOnly: true, sameSite: "None", secure: true });
   res.json({ message: "Cookie cleared" });
 };
 
