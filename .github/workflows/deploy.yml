@@ -47,4 +47,5 @@ jobs:
             cd ${{ secrets.DIRECTORY }}
             git pull https://${{ secrets.UNAME }}:${{ secrets.PASSWORD }}@${{ secrets.BGIT }} main
             pm2 stop index.js
+            npm install
             pm2 start index.js
