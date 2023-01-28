@@ -161,6 +161,10 @@ const deleteObject = (user) => {
   delete user.userInfo
 }
 
+const findUserByRole = async (role) => {
+  return await User.find().mySelect().byGeneric('role', role).exec()
+}
+
 module.exports = {
   getUserByUsername,
   getUser,
@@ -171,5 +175,6 @@ module.exports = {
   findUser,
   findUserInfo,
   findUnoccupiedDriver,
-  deleteObject
+  deleteObject,
+  findUserByRole
 };

@@ -2,7 +2,7 @@ const User = require("../models/User");
 const UserInformation = require("../models/UserInformation");
 const bcrypt = require("bcrypt");
 const { sendStatus, setUpdateValue, isEmpty } = require("../services/global");
-const { getUserByUsername, findUserInfo, updateObjectOfObject } = require("../services/users");
+const { getUserByUsername, findUserInfo, updateObjectOfObject, getUser, findUserByRole } = require("../services/users");
 
 /**
  * @desc Get all user
@@ -123,9 +123,44 @@ const updateUser = async (req, res) => {
   }
 };
 
+
+  /**
+   * @desc Get user by Id
+   * @route Get /users/:id
+   * @access Private
+   */
+  const getUserById = async (req, res) => {
+    try {
+      const user = await getUser(req)
+
+      res.json({user})
+    } catch (error) {
+      return error
+    }
+  }
+
+  /**
+   * @desc Get all user by role
+   * @route Post /users/role
+   * @access Private
+   */
+
+  const getUserByRole = async (req, res) => {
+    try {
+      const { role } = req.body
+      const users = await findUserByRole(role)
+
+      res.json({users})
+    } catch (error) {
+      return error
+    }
+  }
+
 module.exports = {
   getUsers,
   getPagination,
   getCurrentUser,
-  updateUser
+  updateUser,
+  getUserById,
+  getUserByRole
 };

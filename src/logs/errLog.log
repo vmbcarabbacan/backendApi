@@ -1,3 +1,4 @@
 20230112	17:17:46	dfdfa7f5-b7f4-487f-ac9d-e6668e97f9fb	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\src\config\views\404.html'	POST	/trip/store	undefined
 20230112	18:51:25	4afe76e8-3607-47e9-b976-ca651561dfc1	Error: Cannot set headers after they are sent to the client	POST	/trip/store	undefined
 20230112	21:17:06	7bc52d6e-8fd1-433b-8aff-0b698e6dec35	Error: Cannot set headers after they are sent to the client	POST	/trip/store	undefined
+20230128	08:05:45	a5b60838-1490-4ae7-93e7-8f41a2b8c7a9	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\src\config\views\404.html'	POST	/auth/logout	undefined

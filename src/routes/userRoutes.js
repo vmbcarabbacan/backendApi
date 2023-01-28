@@ -6,6 +6,8 @@ const verifyJWT = require('../middleware/verifyJWT')
 router.use(verifyJWT)
 
 router.route('/').get(userController.getUsers)
+router.route('/:id').get(userController.getUserById)
+router.route('/role').post(userController.getUserByRole)
 router.route('/update/:id').put(userController.updateUser)
 router.route('/pagination').get(userController.getPagination)
 router.route('/current-user').get(userController.getCurrentUser)

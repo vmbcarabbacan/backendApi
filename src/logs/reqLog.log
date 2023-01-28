@@ -114,3 +114,15 @@
 20230117	15:11:53	9caa2e41-0430-416b-82a7-5913812a14ff	POST: /auth	http://localhost:8080
 20230117	15:13:55	973985ad-f6c5-4a61-84e6-41bac93ba370	OPTIONS: /auth	http://localhost:8080
 20230117	15:13:55	44552840-6e49-4b49-96cd-b1e5551fcc28	POST: /auth	http://localhost:8080
+20230128	08:05:45	a1f29e60-4782-49b8-aba3-257a26dafdec	POST: /auth/logout	undefined
+20230128	08:05:50	dd273f8e-4416-4225-bcde-ca625aa84dce	POST: /auth	undefined
+20230128	08:05:56	30e5a4db-92f5-4585-8851-ba6658b670ad	GET: /users	undefined
+20230128	08:11:32	590b0865-ca0d-4a4b-8d11-0818c1af426f	GET: /users/63c0471c6a93db6081db3b75	undefined
+20230128	08:13:07	b5b3d889-c0a6-48bb-bb3d-34d27516dd78	POST: /users/role	undefined
+20230128	08:14:57	9491d8f7-86bf-4c50-9350-24a4c4cdd697	POST: /users/role	undefined
+20230128	08:16:24	ab3cc638-4329-4bae-bf7c-e88aca5d8a9f	POST: /users/role	undefined
+20230128	08:17:33	e409d4b7-0a56-40d7-8dad-78ae14cc56bd	POST: /users/role	undefined
+20230128	08:17:48	39daf113-c1e9-401f-ae90-cbd2bf5e1e40	POST: /users/role	undefined
+20230128	08:18:43	fcc62974-ef91-43d7-b6a4-ad05b3037f21	POST: /users/role	undefined
+20230128	08:19:02	c72f8bca-d309-468a-846b-fe88313eeadb	POST: /users/role	undefined
+20230128	08:25:24	0682cd46-58db-4a72-abe2-244745a1a08b	POST: /users/role	undefined

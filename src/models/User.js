@@ -87,7 +87,7 @@ const userSchema = new mongoose.Schema(
 
 userSchema.query.mySelect = function () {
   return this.select([
-    "-passowrd",
+    "-password",
     "-__v",
     "-userInfo.__v",
     "-userInfo.user",
