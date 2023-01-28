@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const AutoIncrement = require("mongoose-sequence")(mongoose);
+const { DEFAULT_IMAGE_URL } = process.env
 
 const userInformationSchema = new mongoose.Schema({
   user: {
@@ -26,7 +27,7 @@ const userInformationSchema = new mongoose.Schema({
   },
   profile: {
     type: String,
-    default: "/img/profile/default.png",
+    default: DEFAULT_IMAGE_URL,
   },
 });
 

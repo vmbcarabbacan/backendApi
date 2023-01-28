@@ -10,7 +10,7 @@ const { getUserByUsername, findUserInfo, updateObjectOfObject, getUser, findUser
  * @access Private
  */
 const getUsers = async (req, res) => {
-  const users = await User.find().select("-password, -__v");
+  const users = await User.getAdmins().select("-password, -__v");
   if (!users?.length) return sendStatus(res, 400, "No user found");
 
   res.json(users);
@@ -27,7 +27,7 @@ const getPagination = async (req, res) => {
   const indexStart = (page - 1) * per_page;
   const indexEnd = indexStart + per_page;
 
-  const cursor = await User.find().skip(indexStart).limit(per_page).exec();
+  const cursor = await User.getAdmins().skip(indexStart).limit(per_page).exec();
   const count = await User.countDocuments();
 
   if (!cursor?.length) return sendStatus(res, 400, "No user found");
@@ -60,7 +60,7 @@ const getCurrentUser = async (req, res) => {
 
 /**
  * @desc Update user
- * @route Post /users/update
+ * @route Put /users/update/:id
  * @access Private
  */
 const updateUser = async (req, res) => {
@@ -117,7 +117,9 @@ const updateUser = async (req, res) => {
     const updatedInfo = await findUserInfo({ user: _id })
     await updateObjectOfObject('userInfo', _id, updatedInfo)
 
-    sendStatus(res, 200, 'Success');
+    // sendStatus(res, 200, 'Success');
+    const user = await getUser(req)
+    res.json({user})
   } catch (err) {
     sendStatus(res, 401, err.errors);
   }

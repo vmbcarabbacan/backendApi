@@ -104,9 +104,9 @@ userSchema.query.importantField = function () {
     "role",
     "active",
     "createdAt",
-    "updatedAt"
-  ])
-}
+    "updatedAt",
+  ]);
+};
 
 userSchema.query.byName = function (value) {
   return this.where({ name: new RegExp(value, "i") });
@@ -130,6 +130,10 @@ userSchema.statics.getAll = function (column, value) {
 
 userSchema.statics.getOne = function (column, value) {
   return this.findOne({ [column]: new RegExp(value, "i") });
+};
+
+userSchema.statics.getAdmins = function () {
+  return this.find({ role: { $nin: ["User", "Driver"] } });
 };
 
 userSchema.query.byDriver = function () {
