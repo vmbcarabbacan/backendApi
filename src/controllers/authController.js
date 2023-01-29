@@ -25,6 +25,8 @@ const login = async (req, res) => {
 
     if (!match) return sendStatus(res, 401, "Unauthorized");
 
+    if(!user.active && !['Driver'].includes(user.role)) return sendStatus(res, 401, 'Unauthrized')
+
     const token = jwt.sign(
       {
         UserInfo: {

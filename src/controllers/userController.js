@@ -2,7 +2,15 @@ const User = require("../models/User");
 const UserInformation = require("../models/UserInformation");
 const bcrypt = require("bcrypt");
 const { sendStatus, setUpdateValue, isEmpty } = require("../services/global");
-const { getUserByUsername, findUserInfo, updateObjectOfObject, getUser, findUserByRole } = require("../services/users");
+const {
+  getUserByUsername,
+  findUserInfo,
+  updateObjectOfObject,
+  getUser,
+  findUserByRole,
+  findUser
+} = require("../services/users");
+const s3Uploadv2 = require("../services/awsS3");
 
 /**
  * @desc Get all user
@@ -55,7 +63,7 @@ const getPagination = async (req, res) => {
 const getCurrentUser = async (req, res) => {
   const user = await getUserByUsername(req);
 
-  res.json({user});
+  res.json({ user });
 };
 
 /**
@@ -68,7 +76,7 @@ const updateUser = async (req, res) => {
     const { firstName, familyName, username, email, password, contactNumber } =
       req.body;
 
-      const id = req.params.id
+    const id = req.params.id;
 
     // check if body contains undefined, null or empty
     if (isEmpty(Object.values(req.body)))
@@ -76,13 +84,15 @@ const updateUser = async (req, res) => {
 
     // Check for duplicates
     const duplicateUsername = await User.findOne({ username }).lean().exec();
-    if (duplicateUsername?._id != id) return sendStatus(res, 409, "Duplicate username");
+    if (duplicateUsername?._id != id)
+      return sendStatus(res, 409, "Duplicate username");
 
     const duplicateEmail = await User.findOne({ email }).lean().exec();
-    if (duplicateEmail?._id != id) return sendStatus(res, 409, "Duplicate email");
+    if (duplicateEmail?._id != id)
+      return sendStatus(res, 409, "Duplicate email");
 
     let hashPassword = null;
-    if(password) {
+    if (password) {
       // Hash password
       hashPassword = await bcrypt.hash(password, 10);
     }
@@ -94,69 +104,108 @@ const updateUser = async (req, res) => {
       ...req.body,
       name: fullName,
     };
-    
-    if(hashPassword) {
-      userObject['password'] = hashPassword
+
+    if (hashPassword) {
+      userObject["password"] = hashPassword;
     }
 
     const { filter, update, _id } = setUpdateValue(req, userObject);
     await User.updateOne(filter, update);
 
-    const userInfo = await findUserInfo({ user: _id })
+    const userInfo = await findUserInfo({ user: _id });
     const userInfoObject = {
       firstName,
       familyName,
       contactNumber,
-    }
+    };
 
     // update user information table
-    const { filter:infoFilter, update:infoUpdate, _id:infoId } = setUpdateValue(req, userInfoObject, userInfo._id)
-    await UserInformation.updateOne(infoFilter, infoUpdate)
+    const {
+      filter: infoFilter,
+      update: infoUpdate,
+      _id: infoId,
+    } = setUpdateValue(req, userInfoObject, userInfo._id);
+    await UserInformation.updateOne(infoFilter, infoUpdate);
 
-    // // update user info inside user object
-    const updatedInfo = await findUserInfo({ user: _id })
-    await updateObjectOfObject('userInfo', _id, updatedInfo)
+    // update user info inside user object
+    const updatedInfo = await findUserInfo({ user: _id });
+    await updateObjectOfObject("userInfo", _id, updatedInfo);
 
     // sendStatus(res, 200, 'Success');
-    const user = await getUser(req)
-    res.json({user})
+    const user = await getUser(req);
+    res.json({ user });
   } catch (err) {
     sendStatus(res, 401, err.errors);
   }
 };
 
+/**
+ * @desc Update user profile
+ * @route Put /users/update-profile/:id
+ * @access Private
+ */
+const updateUserProfile = async (req, res) => {
+  try {
+    if (!req.file) sendStatus(res, 400, "Document is missing");
+    const url = await s3Uploadv2(req.file, "profile");
+    const id = req.body.id
 
-  /**
-   * @desc Get user by Id
-   * @route Get /users/:id
-   * @access Private
-   */
-  const getUserById = async (req, res) => {
-    try {
-      const user = await getUser(req)
+    const userInfo = await findUserInfo({ user: id });
+    const userInfoObject = {
+      profile: url.Location,
+    };
 
-      res.json({user})
-    } catch (error) {
-      return error
-    }
+    // update user information table
+    const {
+      filter: infoFilter,
+      update: infoUpdate,
+      _id: infoId,
+    } = setUpdateValue(req, userInfoObject, userInfo._id);
+    await UserInformation.updateOne(infoFilter, infoUpdate);
+
+    // update user info inside user object
+    const updatedInfo = await findUserInfo({ user: id });
+    await updateObjectOfObject("userInfo", id, updatedInfo);
+
+    // sendStatus(res, 200, 'Success');
+    const user = await findUser({  _id: id });
+    res.json({ user });
+  } catch (error) {
+    sendStatus(res, 401, error.errors);
   }
+};
 
-  /**
-   * @desc Get all user by role
-   * @route Post /users/role
-   * @access Private
-   */
+/**
+ * @desc Get user by Id
+ * @route Get /users/:id
+ * @access Private
+ */
+const getUserById = async (req, res) => {
+  try {
+    const user = await getUser(req);
 
-  const getUserByRole = async (req, res) => {
-    try {
-      const { role } = req.body
-      const users = await findUserByRole(role)
-
-      res.json({users})
-    } catch (error) {
-      return error
-    }
+    res.json({ user });
+  } catch (error) {
+    return error;
   }
+};
+
+/**
+ * @desc Get all user by role
+ * @route Post /users/role
+ * @access Private
+ */
+
+const getUserByRole = async (req, res) => {
+  try {
+    const { role } = req.body;
+    const users = await findUserByRole(role);
+
+    res.json({ users });
+  } catch (error) {
+    return error;
+  }
+};
 
 module.exports = {
   getUsers,
@@ -164,5 +213,6 @@ module.exports = {
   getCurrentUser,
   updateUser,
   getUserById,
-  getUserByRole
+  getUserByRole,
+  updateUserProfile,
 };

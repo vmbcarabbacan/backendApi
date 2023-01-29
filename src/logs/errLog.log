@@ -1,5 +1,3 @@
-20230112	17:17:46	dfdfa7f5-b7f4-487f-ac9d-e6668e97f9fb	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\src\config\views\404.html'	POST	/trip/store	undefined
-20230112	18:51:25	4afe76e8-3607-47e9-b976-ca651561dfc1	Error: Cannot set headers after they are sent to the client	POST	/trip/store	undefined
-20230112	21:17:06	7bc52d6e-8fd1-433b-8aff-0b698e6dec35	Error: Cannot set headers after they are sent to the client	POST	/trip/store	undefined
-20230128	08:05:45	a5b60838-1490-4ae7-93e7-8f41a2b8c7a9	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\src\config\views\404.html'	POST	/auth/logout	undefined
-20230128	09:10:11	b6651582-928d-431c-b71e-e5b74c49866f	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\src\config\views\404.html'	POST	/auth/logout	undefined
+20230129	20:27:23	b03958b9-f770-423d-aa35-8d38ae06a234	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\src\config\views\404.html'	PUT	/users/update-profile	http://localhost:3000
+20230129	22:57:41	30c48643-0b3c-4043-9e2d-640805f891a6	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\src\config\views\404.html'	PUT	/users/update-profile	http://localhost:3000
+20230129	22:57:55	32c44e24-5326-4809-be37-13f61dab71c6	Error: ENOENT: no such file or directory, stat 'C:\Users\ze-zl\projects\code\project\backendApi\src\config\views\404.html'	PUT	/users/update-profile	http://localhost:3000
