@@ -25,27 +25,27 @@ jobs:
         env:
           CI: true
 
-  deploy:
-    needs: [build]
-    runs-on: ubuntu-latest
+  # deploy:
+  #   needs: [build]
+  #   runs-on: ubuntu-latest
 
-    steps:
-      - name: SSH deploy
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
-            . ~/.nvm/nvm.sh
+  #   steps:
+  #     - name: SSH deploy
+  #       uses: appleboy/ssh-action@master
+  #       with:
+  #         host: ${{ secrets.HOST }}
+  #         username: ${{ secrets.USERNAME }}
+  #         key: ${{ secrets.KEY }}
+  #         port: ${{ secrets.PORT }}
+  #         script: |
+  #           curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
+  #           . ~/.nvm/nvm.sh
 
-            nvm install 16
-            nvm use 16
-            git config --global --add safe.directory ${{ secrets.DIRECTORY }}
-            cd ${{ secrets.DIRECTORY }}
-            git pull https://${{ secrets.UNAME }}:${{ secrets.PASSWORD }}@${{ secrets.BGIT }} main
-            pm2 stop index.js
-            npm install
-            pm2 start index.js
+  #           nvm install 16
+  #           nvm use 16
+  #           git config --global --add safe.directory ${{ secrets.DIRECTORY }}
+  #           cd ${{ secrets.DIRECTORY }}
+  #           git pull https://${{ secrets.UNAME }}:${{ secrets.PASSWORD }}@${{ secrets.BGIT }} main
+  #           pm2 stop index.js
+  #           npm install
+  #           pm2 start index.js

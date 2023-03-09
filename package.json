@@ -37,6 +37,7 @@
     "mongoose-sequence": "^5.3.1",
     "multer": "^1.4.4",
     "multer-gridfs-storage": "^5.0.2",
+    "socket.io": "^4.6.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

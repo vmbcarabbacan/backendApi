@@ -105,6 +105,7 @@ userSchema.query.importantField = function () {
     "active",
     "createdAt",
     "updatedAt",
+    "userInfo",
   ]);
 };
 

@@ -132,8 +132,8 @@ const updateUser = async (req, res) => {
     await updateObjectOfObject("userInfo", _id, updatedInfo);
 
     // sendStatus(res, 200, 'Success');
-    const user = await getUser(req);
-    res.json({ user });
+    const user = await findUser({ _id });
+    await res.json({ user });
   } catch (err) {
     sendStatus(res, 401, err.errors);
   }
